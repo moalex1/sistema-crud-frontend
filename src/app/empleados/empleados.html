@@ -1,0 +1,118 @@
+<mat-sidenav-container class="container">
+
+  <mat-sidenav-content>
+
+    <div class="empleados-section">
+
+      <h2>Empleados</h2>
+
+      <!-- 🔥 FORMULARIO DE EDICIÓN -->
+      <div *ngIf="editandoEmpleado" class="form-edit">
+
+        <h3>Editar Empleado</h3>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="editandoEmpleado.nombre">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="editandoEmpleado.email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>CURP</mat-label>
+          <input matInput [(ngModel)]="editandoEmpleado.curp">
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" (click)="guardarEdicion()">
+            Guardar
+          </button>
+
+          <button mat-raised-button color="warn" (click)="cancelarEdicion()">
+            Cancelar
+          </button>
+        </div>
+
+      </div>
+
+      <!-- BUSCADOR -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Buscar empleado</mat-label>
+        <input matInput (keyup)="applyFilter($event)">
+      </mat-form-field>
+
+      <!-- BOTONES -->
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="loadEmpleados()">
+          Recargar
+        </button>
+
+        <button mat-raised-button color="accent" (click)="crearEmpleado()">
+          + Crear
+        </button>
+      </div>
+
+      <!-- LOADING -->
+      <div *ngIf="loading" class="loading">
+        Cargando empleados...
+      </div>
+
+      <!-- ERROR -->
+      <div *ngIf="error" class="error">
+        {{ error }}
+      </div>
+
+      <!-- TABLA -->
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <td mat-cell *matCellDef="let emp">{{ emp.nombre }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let emp">{{ emp.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="curp">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CURP</th>
+          <td mat-cell *matCellDef="let emp">{{ emp.curp }}</td>
+        </ng-container>
+
+        <!-- ACCIONES -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let emp">
+
+            <button mat-button color="primary" (click)="editarEmpleado(emp)">
+              Editar
+            </button>
+
+            <button mat-button color="warn" (click)="eliminarEmpleado(emp)">
+              Borrar
+            </button>
+
+          </td>
+        </ng-container>
+
+        <!-- HEADER + ROWS -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+      <!-- PAGINATOR -->
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons>
+      </mat-paginator>
+
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

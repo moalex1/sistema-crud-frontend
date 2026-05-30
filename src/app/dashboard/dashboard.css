@@ -1,0 +1,147 @@
+/* ==========================================================================
+   ESTRUCTURA GENERAL DEL CONTENEDOR (SIDENAV)
+   ========================================================================== */
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #f8f9fa; /* Fondo gris claro unificado */
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+/* Sidebar Lateral */
+.sidenav {
+  width: 240px;
+  background-color: #ffffff !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.03);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Cuando el sidebar está colapsado/cerrado (modo iconos) */
+.sidenav.mat-drawer-closed {
+  width: 64px;
+}
+
+/* Área del Logo / Encabezado del menú */
+.logo {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #333333;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #f1f3f5;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   MENÚ DE NAVEGACIÓN (MAT-NAV-LIST)
+   ========================================================================== */
+mat-nav-list {
+  padding-top: 8px !important;
+}
+
+/* Elementos de la lista de navegación */
+mat-nav-list a[mat-list-item] {
+  margin: 4px 8px !important;
+  border-radius: 6px !important;
+  height: 48px !important;
+  color: #5f6368 !important;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out !important;
+}
+
+/* Efecto Hover al pasar por encima de las opciones */
+mat-nav-list a[mat-list-item]:hover {
+  background-color: #f1f3f5 !important;
+  color: #3f51b5 !important;
+}
+
+/* Iconos dentro del menú lateral */
+mat-nav-list a[mat-list-item] mat-icon {
+  margin-right: 16px !important;
+  color: inherit !important;
+  font-size: 22px;
+}
+
+/* Texto de las opciones al lado del icono */
+mat-nav-list a[mat-list-item] span {
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+/* ==========================================================================
+   BARRA SUPERIOR (MAT-TOOLBAR / NAVBAR)
+   ========================================================================== */
+mat-toolbar {
+  background-color: #ffffff !important; /* Pasamos de color plano a blanco moderno */
+  color: #333333 !important;
+  height: 64px !important;
+  border-bottom: 1px solid #f1f3f5;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03) !important;
+  padding: 0 16px !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Título del Navbar */
+mat-toolbar > span:first-of-type {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #212529;
+  margin-left: 8px;
+}
+
+/* Botones de Icono de Material en la barra superior */
+mat-toolbar button[mat-icon-button] {
+  color: #5f6368 !important;
+  transition: color 0.2s ease;
+}
+
+mat-toolbar button[mat-icon-button]:hover {
+  color: #3f51b5 !important;
+}
+
+/* Espaciador empuja el usuario al extremo derecho */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Contenedor o detalles del usuario logueado */
+mat-toolbar mat-icon {
+  margin-right: 8px;
+  color: #757575;
+}
+
+mat-toolbar span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #495057;
+}
+
+/* ==========================================================================
+   ÁREA DE CONTENIDO DINÁMICO (ROUTER-OUTLET)
+   ========================================================================== */
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa; /* Garantiza fondo limpio detrás de las tarjetas */
+  overflow-x: hidden;
+}
+
+.content {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Ajustes responsivos rápidos */
+@media (max-width: 600px) {
+  .content {
+    padding: 16px;
+  }
+}

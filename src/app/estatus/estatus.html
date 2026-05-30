@@ -1,0 +1,138 @@
+<div class="estatus-container">
+  
+  <!-- INDICADOR DE CARGA (LOADING) -->
+  <div *ngIf="ui.loading" class="loading-overlay">
+    <span>Cargando datos del servidor...</span>
+  </div>
+
+  <!-- MENSAJE DE ERROR -->
+  <div *ngIf="ui.error" class="error-banner">
+    {{ ui.error }}
+  </div>
+
+  <!-- SECCIÓN 1: FORMULARIO DE GESTIÓN (CREAR / EDITAR) -->
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>{{ ui.editando ? 'Editar Estatus' : 'Nuevo Estatus de Empleado' }}</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form (ngSubmit)="ui.editando ? guardar() : crear()" #estatusForm="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre del Estatus</mat-label>
+          <input 
+            matInput 
+            name="estatusEmpleado" 
+            [(ngModel)]="form.estatusEmpleado" 
+            required 
+            placeholder="Ej: Activo, Inactivo, Licencia...">
+        </mat-form-field>
+
+        <div class="form-actions">
+          <button 
+            type="submit" 
+            [disabled]="!estatusForm.form.valid" 
+            class="btn btn-primary">
+            {{ ui.editando ? 'Guardar Cambios' : 'Registrar' }}
+          </button>
+          
+          <button 
+            type="button" 
+            *ngIf="ui.editando" 
+            (click)="cancelar()" 
+            class="btn btn-secondary">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <hr class="section-divider">
+
+  <!-- SECCIÓN 2: TABLA CRUD DE ESTATUS -->
+  <mat-card class="table-card">
+    <mat-card-header>
+      <mat-card-title>Catálogo de Estatus</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 full-width">
+        
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.idEstatusEmpleado}} </td>
+        </ng-container>
+
+        <!-- Estatus Column -->
+        <ng-container matColumnDef="estatus">
+          <th mat-header-cell *matHeaderCellDef> Estatus </th>
+          <td mat-cell *matCellDef="let element"> {{element.estatusEmpleado}} </td>
+        </ng-container>
+
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+            <button type="button" (click)="editar(element)" class="btn-icon edit">Editar</button>
+            <button type="button" (click)="eliminar(element.idEstatusEmpleado)" class="btn-icon delete">Eliminar</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasEstatus"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasEstatus;"></tr>
+      </table>
+
+      <div *ngIf="estatus.length === 0 && !ui.loading" class="empty-message">
+        No hay registros de estatus disponibles.
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+  <!-- SECCIÓN 3: TABLA DE VISTA DEL INNER JOIN (EMPLEADOS Y GRUPO LABORAL) -->
+  <mat-card class="table-card match-margin">
+    <mat-card-header>
+      <mat-card-title>Personal asignado a Grupos Laborales </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      
+      <!-- Renderizado nativo asíncrono con el pipe async seguro -->
+      <table mat-table [dataSource]="(empleadosGrupo$ | async) || []" class="mat-elevation-z2 full-width">
+        
+        <!-- RFC Column -->
+        <ng-container matColumnDef="rfc">
+          <th mat-header-cell *matHeaderCellDef> RFC </th>
+          <td mat-cell *matCellDef="let emp"> {{emp.claveRfc}} </td>
+        </ng-container>
+
+        <!-- Empleado Column -->
+        <ng-container matColumnDef="nombreCompleto">
+          <th mat-header-cell *matHeaderCellDef> Nombre Completo </th>
+          <td mat-cell *matCellDef="let emp"> 
+            {{emp.apellidoPaterno}} {{emp.apellidoMaterno}}, {{emp.nombre}} 
+          </td>
+        </ng-container>
+
+        <!-- Grupo Laboral Column -->
+        <ng-container matColumnDef="grupo">
+          <th mat-header-cell *matHeaderCellDef> Grupo Laboral </th>
+          <td mat-cell *matCellDef="let emp" class="highlight-cell"> 
+            {{emp.descripcionGrupo}} 
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasEmpleados"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasEmpleados;"></tr>
+      </table>
+
+      <!-- Mensaje de lista vacía controlado de forma reactiva -->
+      <div *ngIf="((empleadosGrupo$ | async) || []).length === 0 && !ui.loading" class="empty-message">
+        No se encontraron empleados vinculados a grupos laborales.
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>

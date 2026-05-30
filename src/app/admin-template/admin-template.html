@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+<button mat-buton (click)="myDrawer.toggle()">
+    <mat-icon>menu</mat-icon>
+</button>
+    <span style="flex: auto;"></span>
+
+ <button mat-button routerLink="/home"> home</button>
+<button mat-button routerLink="/profile">perfil</button>
+
+<button mat-button [matMenuTriggerFor]="importMenu">
+        <mat-icon iconPositionEnd>Keyboard_arrow_down</mat-icon>
+        importar
+    </button>
+
+    <mat-menu #importMenu>
+        <button mat-menu-item routerLink="loadempleado">Cargar Empleados</button>
+        <button mat-menu-item routerLink="loadestatus">Cargar EstatusEmpleado</button>
+    </mat-menu>
+    <button mat-raised-button color="accent" routerLink="/login">Salir</button>
+</mat-toolbar>
+<mat-drawer-container>
+
+<mat-drawer #myDrawer opened="true" mode ="side" position="start"> 
+ <mat-list>
+    <mat-list-item>
+        <button mat-button routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon>  
+        Dashboard  
+        </button>
+    </mat-list-item>
+    <mat-list-item>
+        <button mat-button routerLink="/empleados">
+        <mat-icon>dashboard</mat-icon>
+        Empleados
+        </button>
+    </mat-list-item>
+        <mat-list-item>
+        <button mat-button routerLink="/estatus">
+        <mat-icon>dashboard</mat-icon>
+         Estatus   
+    </button>
+    </mat-list-item>
+ </mat-list>   
+</mat-drawer>
+<mat-drawer-content>
+    <div style="min-height: 600px;">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-content>
+</mat-drawer-container>

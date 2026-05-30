@@ -1,0 +1,52 @@
+<div class="register-container" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  
+  <mat-card style="width: 400px; padding: 16px;">
+    <mat-card-header>
+      <mat-card-title>Crear Nueva Cuenta</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content style="margin-top: 24px;">
+      
+      <!-- Alerta dinámica para nombres de usuario o correos ya existentes en la BD -->
+    @if (errorMessage) {
+  <div class="alert-error" style="color: red; margin-bottom: 16px; font-weight: 500;">
+    ⚠️ {{ errorMessage }}
+  </div>
+}
+
+      <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+        
+        <!-- Input Usuario -->
+        <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 16px;">
+          <mat-label>Nombre de Usuario</mat-label>
+          <input matInput name="usuario" [(ngModel)]="form.usuario" required>
+        </mat-form-field>
+
+        <!-- Input Email -->
+        <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 16px;">
+          <mat-label>Correo Electrónico</mat-label>
+          <input matInput type="email" name="email" [(ngModel)]="form.email" required email>
+        </mat-form-field>
+
+        <!-- Input Password -->
+        <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 24px;">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" name="password" [(ngModel)]="form.password" required minlength="4">
+        </mat-form-field>
+
+        <!-- Botones de Acción -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.form.valid || loading" style="width: 100%;">
+            {{ loading ? 'Registrando...' : 'Registrarse' }}
+          </button>
+          
+          <a routerLink="/login" style="text-align: center; text-decoration: none; color: #3f51b5; font-size: 14px;">
+            ¿Ya tienes una cuenta? Inicia sesión aquí
+          </a>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>

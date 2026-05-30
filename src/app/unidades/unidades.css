@@ -1,0 +1,66 @@
+.contenedor-tarjeta {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.tarjeta-unidades {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 12px;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.contenido-tabla {
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  background: white;
+}
+
+th.mat-mdc-header-cell {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #333;
+}
+
+.badge-coordinador {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+}
+
+.badge-coordinador mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.spinner-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  gap: 12px;
+  color: #666;
+}
+
+.sin-datos {
+  text-align: center;
+  padding: 24px;
+  color: #888;
+}
