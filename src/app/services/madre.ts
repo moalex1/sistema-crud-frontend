@@ -8,7 +8,7 @@ import { Empleado } from '../models/empleado';
 export class Madres {
 private http = inject(HttpClient);
   //private url = 'http://localhost:8080/api/madre';
-private url = '/api/madre';
+private url = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/madre';
 
   private obtenerHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');

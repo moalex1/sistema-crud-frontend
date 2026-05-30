@@ -16,8 +16,8 @@ export class EstatusEmpleadoService {
 // ======================
   // URL BASE
   // ======================
-private url = 'api/estatusEmpleado';
-private urlEmpleado = 'api/estatusEmpleado';
+private url = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.netapi/estatusEmpleado';
+private urlEmpleado = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.netapi/estatusEmpleado';
 
   
 //private url = 'http://localhost:8080/api/estatusEmpleado';
@@ -53,7 +53,7 @@ private urlEmpleado = 'api/estatusEmpleado';
 
 update(id: number, data: Estatus): Observable<Estatus> {
   return this.http.put<Estatus>(
-    `api/estatusEmpleado/${id}`,
+    `https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/estatusEmpleado/${id}`,
     data,
     { headers: this.getHeaders() }
   );

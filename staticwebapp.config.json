@@ -1,25 +1,11 @@
-
 {
   "navigationFallback": {
     "rewrite": "/index.html"
   },
   "routes": [
     {
-      "route": "/api/*",
-      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      "allowedRoles": ["anonymous", "authenticated"]
+      "route": "/index.html",
+      "statusCode": 200
     }
-  ],
-  "networking": {
-    "allowedIpRanges": []
-  },
-  "forwarding": {
-    "api": {
-      "host": "apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net"
-    }
-  },
-  "globalHeaders": {
-    "X-XSS-Protection": "1; mode=block",
-    "X-Content-Type-Options": "nosniff"
-  }
+  ]
 }
