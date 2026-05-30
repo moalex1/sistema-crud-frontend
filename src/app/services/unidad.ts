@@ -9,7 +9,7 @@ import { UnidadCoordinador } from '../models/unidad-coordinador';
 })
 export class UnidadService {
 private http = inject(HttpClient);
-  private urlPuras = 'apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/unidad';
+  private urlPuras = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/unidad';
 private urlCoordinadores = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/unidad/coordinadores';
 
   // 🔄 URLs corregidas para que coincidan exactamente con tu UnidadController.java
