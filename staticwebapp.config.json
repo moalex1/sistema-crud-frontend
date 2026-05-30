@@ -1,3 +1,4 @@
+
 {
   "navigationFallback": {
     "rewrite": "/index.html"
@@ -16,5 +17,9 @@
     "api": {
       "host": "apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net"
     }
+  },
+  "globalHeaders": {
+    "X-XSS-Protection": "1; mode=block",
+    "X-Content-Type-Options": "nosniff"
   }
 }
