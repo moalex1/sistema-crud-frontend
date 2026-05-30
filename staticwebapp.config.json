@@ -1,0 +1,20 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "routes": [
+    {
+      "route": "/api/*",
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      "allowedRoles": ["anonymous", "authenticated"]
+    }
+  ],
+  "networking": {
+    "allowedIpRanges": []
+  },
+  "forwarding": {
+    "api": {
+      "host": "apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net"
+    }
+  }
+}
