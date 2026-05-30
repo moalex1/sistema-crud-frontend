@@ -16,8 +16,8 @@ export class EstatusEmpleadoService {
 // ======================
   // URL BASE
   // ======================
-private url = 'apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/estatusEmpleado';
-private urlEmpleado = 'apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/empleado';
+private url = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/estatusEmpleado';
+private urlEmpleado = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/empleado';
 
   
 //private url = 'http://localhost:8080/api/estatusEmpleado';
@@ -53,7 +53,7 @@ private urlEmpleado = 'apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsit
 
 update(id: number, data: Estatus): Observable<Estatus> {
   return this.http.put<Estatus>(
-    `apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/estatusEmpleado/${id}`,
+    `https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/estatusEmpleado/${id}`,
     data,
     { headers: this.getHeaders() }
   );
@@ -68,7 +68,7 @@ update(id: number, data: Estatus): Observable<Estatus> {
 
 getConGrupo(): Observable<EmpleadoGrupo[]> {
   return this.http.get<EmpleadoGrupo[]>(
-    'apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/empleado/con-grupo',
+    'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/empleado/con-grupo',
     {
       headers: this.getHeaders()
     }

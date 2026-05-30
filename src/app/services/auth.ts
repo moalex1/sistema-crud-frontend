@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
 //  private API = 'http://localhost:8080/api/usuarios';
-private API = 'apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/usuarios';
+private API = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/usuarios';
   constructor(private http: HttpClient) {}
 
   login(data: any) {

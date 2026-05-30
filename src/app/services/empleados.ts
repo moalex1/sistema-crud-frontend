@@ -9,7 +9,7 @@ export class EmpleadosService {
 
   // Centralizamos la URL para no repetirla en cada método
 //  private apiUrl = 'http://localhost:8080/api/empleado';
-private apiUrl = 'apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/empleado';
+private apiUrl = 'https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/empleado';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,7 @@ private apiUrl = 'apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.ne
     // 2. Quitamos el 'responseType: text'. 
     // Al tiparlo como <any[]>, TypeScript sabrá que es un arreglo y no un string.
 //    return this.http.get<any[]>('http://localhost:8080/api/empleado', { headers });
-return this.http.get<any[]>('apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/empleado', { headers });    
+return this.http.get<any[]>('https://apiempleado-aza2cxfzc8eeatew.mexicocentral-01.azurewebsites.net/api/empleado', { headers });    
   }
 
   // ==========================================
